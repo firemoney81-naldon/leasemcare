@@ -1,23 +1,549 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+  <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.7;
+            color: #333;
+            background: #f4f6f8; /* Soft background color */
+        }
+        header, section, footer {
+            padding: 30px 20px;
+            max-width: 1200px;
+            margin: 20px auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08); /* Soft shadow for depth */
+        }
+        header h1 {
+            color: #1a4d2e; /* Deep green for Jeep brand association */
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        header p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 25px;
+        }
+        nav {
+            background: #1a4d2e; /* Dark green nav bar */
+            border-radius: 12px;
+            text-align: center;
+            padding: 18px 0;
+            margin-bottom: 30px;
+        }
+        nav a {
+            color: #fff;
+            margin: 0 18px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1.15rem;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: #f7b731; /* Accent yellow on hover */
+            text-decoration: none;
+        }
+        h2 {
+            font-size: 2rem;
+            color: #1a4d2e;
+            border-left: 5px solid #f7b731; /* Accent color for visual hierarchy */
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+        h3 {
+            font-size: 1.6rem;
+            color: #333;
+            margin-top: 25px;
+        }
+        .section-intro {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 30px;
+            border-left: 3px solid #eee;
+            padding-left: 15px;
+        }
+        .service-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            background: #fcfcfc;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+        .service-card:hover {
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+        }
+        .cta {
+            display: inline-block;
+            background-color: #f7b731; /* Accent yellow/gold */
+            color: #1a4d2e; /* Deep green text on yellow CTA */
+            padding: 16px 40px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+            border: none;
+            cursor: pointer;
+        }
+        .cta:hover {
+            background-color: #e6a72c;
+        }
+        form label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #333;
+        }
+        form input, form select, form textarea {
+            width: calc(100% - 20px);
+            padding: 12px 10px;
+            margin-top: 5px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        form input[type="radio"], form input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+        }
+        .faq dt {
+            font-weight: 700;
+            margin-top: 25px;
+            cursor: pointer;
+            color: #1a4d2e;
+            font-size: 1.1rem;
+        }
+        .faq dd {
+            margin-left: 0;
+            padding-left: 20px;
+            border-left: 2px solid #f7b731;
+            margin-top: 10px;
+            color: #555;
+        }
+        .table-container {
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.95rem;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: 700;
+            color: #333;
+        }
+        .highlight {
+            color: #1a4d2e;
+            font-weight: 700;
+        }
+        .image-container {
+            text-align: center;
+            margin: 25px 0;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .review-card {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+            margin-bottom: 15px;
+        }
+        .review-card h4 {
+            color: #1a4d2e;
+            margin-top: 0;
+        }
+    </style>
+
+    <!-- JSON-LD Schema for LocalBusiness & OfferCatalog -->
+    <script type="application/ld+json">
+    {
+      "@context":"https://schema.org",
+      "@type":"Service",
+      "name":"지프 랭글러 리스 전문 에이전시",
+      "description": "2026년형 지프 랭글러 4xe, 루비콘, 사하라 모델의 장기 리스 및 장기렌트 가격 비교 서비스를 제공합니다. 개인 및 법인 사업자에게 최적화된 조건으로 신차 견적을 안내합니다.",
+      "url":"https://www.yourdomain.kr/",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "Jeep Wrangler Lease Agency",
+        "telephone": "1666-xxxx",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "서울 강남구 테헤란로 123",
+          "addressLocality": "서울시",
+          "addressRegion": "강남구",
+          "postalCode": "06123",
+          "addressCountry": "KR"
+        }
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "KR"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "지프 랭글러 리스 상품",
+        "itemListElement": [
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "지프 랭글러 4xe 리스"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "지프 랭글러 루비콘 리스"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "지프 랭글러 사하라 리스"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "장기렌트 비교 견적"}}
+        ]
+      }
+    }
+    </script>
+</head>
+<body>
+
+<!-- Header Section: Main title and value proposition -->
+<header id="상단">
+    <h1>지프 랭글러 리스 가격 비교 및 2026년 신차 견적 전문</h1>
+    <p>오프로드의 상징, 지프 랭글러(Jeep Wrangler)를 합리적인 조건으로 소유하는 가장 스마트한 방법! <br><strong>랭글러 4xe, 루비콘, 사하라 모델</strong>별 최저가 리스 견적을 지금 바로 확인하세요.</p>
+    <a href="#무료견적신청" class="cta">무료 견적 요청하기</a>
+</header>
+
+<!-- Navigation Bar: Links to core sections -->
+<nav>
+    <a href="#모델소개">모델 소개</a>
+    <a href="#리스장점">리스 장점</a>
+    <a href="#견적비용">견적 및 비용</a>
+    <a href="#프로모션">프로모션</a>
+    <a href="#고객후기">고객 후기</a>
+    <a href="#무료견적신청">무료 견적</a>
+    <a href="#자주묻는질문">FAQ</a>
+</nav>
+
+<!-- Main Content Area: Service Introduction -->
+<section id="모델소개" aria-label="지프 랭글러 모델 소개">
+    <h2>지프 랭글러 핵심 모델 비교: 루비콘 vs 사하라 vs 4xe</h2>
+    <div class="section-intro">
+        지프 랭글러는 독보적인 디자인과 압도적인 오프로드 성능으로 전 세계적인 인기를 끌고 있습니다. 2026년형 랭글러는 더욱 정교한 기술과 편의 사양으로 무장했습니다. 특히 플러그인 하이브리드(PHEV) 모델인 4xe의 등장은 <span class="highlight">랭글러 리스 시장의 새로운 변화</span>를 가져왔습니다. 고객님에게 맞는 모델을 선택하는 것이 가장 중요합니다.
+    </div>
+
+    <div class="service-card">
+        <h3>1. 랭글러 루비콘 (Wrangler Rubicon)</h3>
+        <p><strong>오프로드 성능의 끝판왕.</strong> 랭글러 루비콘은 락-트랙(Rock-Trac) 4WD 시스템과 전자식 스웨이바 분리 기능 등 오프로드 특화 사양을 기본 적용합니다. 험지 주행을 즐기는 마니아층에게 가장 적합한 모델이며, <span class="highlight">월 리스료는 사하라 모델 대비 다소 높게</span> 책정되는 경우가 많습니다. <span class="highlight">루비콘 392</span> 모델은 V8 엔진을 탑재하여 더욱 강력한 성능을 자랑합니다.</p>
+        <div class="image-container">
+            <!-- Pexels.com image source placeholder -->
+            <img src="https://images.pexels.com/photos/1105156/pexels-photo-1105156.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="지프 랭글러 루비콘 오프로드 이미지">
+        </div>
+    </div>
+
+    <div class="service-card">
+        <h3>2. 랭글러 사하라 (Wrangler Sahara)</h3>
+        <p><strong>도심과 오프로드의 완벽한 조화.</strong> 랭글러 사하라 모델은 루비콘에 비해 도심 주행에 초점을 맞춘 모델입니다. 고급스러운 실내 마감재와 편의 사양을 갖추고 있어 <span class="highlight">데일리 카로 활용도가 높습니다</span>. 리스 견적을 비교할 때 루비콘 모델과 함께 <span class="highlight">가장 많이 찾는</span> 모델입니다. 랭글러 리스 비용을 <span class="highlight">저렴한곳</span>에서 찾을 때도 사하라 모델이 기준이 됩니다.</p>
+    </div>
+
+    <div class="service-card">
+        <h3>3. 랭글러 4xe (Wrangler 4xe)</h3>
+        <p><strong>고성능 플러그인 하이브리드(PHEV) 모델.</strong> 랭글러 4xe는 2.0L 터보 엔진과 전기모터가 결합되어 뛰어난 연비와 강력한 출력을 동시에 제공합니다. <span class="highlight">친환경차 세제 혜택</span>을 받을 수 있어 리스 초기에 발생하는 취등록세 등의 비용 부담이 적습니다. <span class="highlight">전기차 충전 인프라</span>를 활용할 수 있다면 <span class="highlight">평균 리스 비용</span>을 더욱 절감할 수 있는 <span class="highlight">최적의 선택지</span>입니다.</p>
+    </div>
+</section>
+
+<!-- Section: Lease Advantages (SEO content expansion) -->
+<section id="리스장점" aria-label="지프 랭글러 리스 장점">
+    <h2>지프 랭글러 리스 VS 렌트 VS 할부 비교 분석</h2>
+    <div class="section-intro">
+        지프 랭글러는 높은 잔존가치와 독특한 시장 포지션 때문에 리스 상품의 장점이 두드러집니다. <span class="highlight">개인 사업자 또는 법인 리스</span>를 고민하신다면 세금 절감 효과와 차량 관리의 편리성이 핵심입니다. 저희는 고객의 상황에 맞춰 <span class="highlight">리스 장단점</span>을 명확히 비교해 드립니다.
+    </div>
+
+    <div class="table-container">
+        <table>
+            <caption>랭글러 구매 방식별 장단점 비교 (2026년 기준)</caption>
+            <thead>
+                <tr>
+                    <th>구분</th>
+                    <th>장기 리스 (Lease)</th>
+                    <th>장기 렌트 (Rent)</th>
+                    <th>할부 구매 (Purchase)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>차량 명의</strong></td>
+                    <td>개인 또는 법인 명의</td>
+                    <td>렌터카 업체 명의 (허, 하, 호)</td>
+                    <td>개인 또는 법인 명의</td>
+                </tr>
+                <tr>
+                    <td><strong>초기 비용</strong></td>
+                    <td>보증금 또는 선수금 필요 (무보증 리스 가능)</td>
+                    <td>보증금/선수금 필요 (무보증 렌트 가능)</td>
+                    <td>선수금 필요, 취득세/보험료 별도</td>
+                </tr>
+                <tr>
+                    <td><strong>세금 혜택</strong></td>
+                    <td>월 리스료 전액 비용처리 가능 (사업자)</td>
+                    <td>월 렌트료 전액 비용처리 가능 (사업자)</td>
+                    <td>감가상각비, 이자 비용만 처리 가능</td>
+                </tr>
+                <tr>
+                    <td><strong>보험 처리</strong></td>
+                    <td>개인 보험 요율 적용 (경력 유지)</td>
+                    <td>렌터카 전용 보험 (경력 단절)</td>
+                    <td>개인 보험 요율 적용</td>
+                </tr>
+                <tr>
+                    <td><strong>차량 관리</strong></td>
+                    <td>개인 관리 (정기 정비는 리스사 협의)</td>
+                    <td>렌터카 업체 관리 (정비 옵션 선택 시)</td>
+                    <td>개인 관리</td>
+                </tr>
+                <tr>
+                    <td><strong>총 비용</strong></td>
+                    <td>잔존가치 설정에 따라 <span class="highlight">월 비용이 저렴</span>해질 수 있음</td>
+                    <td>초기 비용 및 보험료 부담이 적음</td>
+                    <td>차량가 전액을 부담하므로 총 비용 높음</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>지프 랭글러 리스의 주요 장점 (개인/법인)</h3>
+    <ul>
+        <li><strong>절세 효과 극대화:</strong> <span class="highlight">법인 리스</span> 또는 <span class="highlight">개인 사업자 리스</span> 시 월 리스료 전액을 손비 처리하여 세금 부담을 줄일 수 있습니다.</li>
+        <li><strong>초기 비용 부담 감소:</strong> 차량 가격 전액을 한 번에 지불할 필요 없이 보증금/선수금만으로 신차를 이용할 수 있습니다. <span class="highlight">보증금 0% 리스 상품</span>도 준비되어 있습니다.</li>
+        <li><strong>차량 교체가 용이:</strong> 계약 만료 시 반납, 인수, 재리스 선택이 가능하여 3~5년마다 <span class="highlight">신형 랭글러</span>로 교체하기 쉽습니다.</li>
+        <li><strong>개인 보험 경력 유지:</strong> 리스 상품은 개인 명의 보험을 사용하므로, 렌터카와 달리 <span class="highlight">보험 경력이 단절되지 않습니다</span>.</li>
+    </ul>
+
+    <h3>지프 랭글러 리스의 단점 및 주의사항</h3>
+    <p>랭글러 리스는 <span class="highlight">총 금융 비용</span>이 할부 대비 높을 수 있습니다. 또한, 계약 기간 중 <span class="highlight">중도 해지</span> 시 위약금(위약금 비율)이 발생하므로 신중한 결정이 필요합니다. <span class="highlight">잔존가치</span> 설정에 따라 인수 비용이 달라지므로, 전문가와 상담을 통해 <span class="highlight">가장 유리한 리스 조건</span>을 찾는 것이 중요합니다.</p>
+</section>
+
+<!-- Section: Pricing and Quotation (SEO keywords: 가격, 견적, 비용) -->
+<section id="견적비용" aria-label="랭글러 리스 견적 및 비용 분석">
+    <h2>2026년형 지프 랭글러 리스 예상 견적 및 비용 분석</h2>
+    <div class="section-intro">
+        지프 랭글러 리스 비용은 차량 가격, 리스 기간, 잔존가치, 보증금 유무에 따라 크게 달라집니다. 특히 <span class="highlight">랭글러 4xe</span>는 친환경차 혜택으로 <span class="highlight">실구매 비용</span>이 일반 모델보다 낮아질 수 있습니다. 아래 표는 <span class="highlight">랭글러 리스 평균 비용</span>을 가늠해 볼 수 있는 <span class="highlight">예상 견적</span> 시뮬레이션입니다. (정확한 <span class="highlight">내돈내산 견적</span>은 상담을 통해 확인해주세요.)
+    </div>
+
+    <div class="table-container">
+        <table>
+            <caption>랭글러 2026년형 예상 리스 월 납입금 (예시)</caption>
+            <thead>
+                <tr>
+                    <th>모델명</th>
+                    <th>차량가 (VAT 포함)</th>
+                    <th>리스 기간</th>
+                    <th>선수금/보증금</th>
+                    <th>월 리스료 (예상)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>랭글러 Sport S</td>
+                    <td>약 7,000만원</td>
+                    <td>48개월</td>
+                    <td>보증금 10%</td>
+                    <td>월 90만원대</td>
+                </tr>
+                <tr>
+                    <td>랭글러 Sahara</td>
+                    <td>약 7,800만원</td>
+                    <td>48개월</td>
+                    <td>보증금 20%</td>
+                    <td>월 100만원대</td>
+                </tr>
+                <tr>
+                    <td>랭글러 Rubicon</td>
+                    <td>약 8,500만원</td>
+                    <td>36개월</td>
+                    <td>선수금 30%</td>
+                    <td>월 120만원대</td>
+                </tr>
+                <tr>
+                    <td>랭글러 4xe (PHEV)</td>
+                    <td>약 9,000만원</td>
+                    <td>60개월</td>
+                    <td>보증금 0%</td>
+                    <td>월 130만원대</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>리스 견적 산출 시 고려할 핵심 요소</h3>
+    <ol>
+        <li><strong>잔존가치 (Residual Value):</strong> 계약 만기 시 차량의 예상 가치입니다. 잔존가치를 높게 설정하면 <span class="highlight">월 리스료는 저렴</span>해지지만, 만기 후 인수 시 부담해야 할 금액이 높아집니다. <span class="highlight">리스사별 잔존가치 책정 기준</span>이 다르므로 비교가 필수입니다.</li>
+        <li><strong>금리 및 수수료:</strong> 리스사마다 적용하는 금리 및 운용 수수료가 다릅니다. 이는 <span class="highlight">총 리스 비용</span>에 직접적인 영향을 미치므로 <span class="highlight">금리 비교</span>를 반드시 해야 합니다.</li>
+        <li><strong>보증금 vs. 선수금:</strong> 보증금은 만기 시 돌려받는 금액이고, 선수금은 미리 지불하고 소멸되는 금액입니다. <span class="highlight">월 납입금</span>을 줄이는 데는 선수금이 유리하지만, <span class="highlight">총 지출 금액</span>은 보증금이 유리할 수 있습니다.</li>
+        <li><strong>보험 및 정비 옵션:</strong> 렌트와 달리 리스는 개인 보험을 가입해야 합니다. 정비 옵션을 추가할 경우 <span class="highlight">월 납입금이 상승</span>할 수 있습니다.</li>
+    </ol>
+</section>
+
+<!-- Section: Promotions and Discounts (SEO keywords: 프로모션, 할인, 혜택, 현금지원) -->
+<section id="프로모션" aria-label="랭글러 리스 프로모션 및 할인 혜택">
+    <h2>2026년형 랭글러 신차 프로모션 및 리스 할인 혜택</h2>
+    <div class="section-intro">
+        지프 랭글러는 딜러사별, 리스사별로 다양한 <span class="highlight">프로모션 및 할인</span> 정책을 진행합니다. <span class="highlight">신규 가입 혜택</span>, <span class="highlight">재고 할인</span>, <span class="highlight">현금 지원</span> 등을 활용하면 <span class="highlight">최저가 견적</span>을 받을 수 있습니다. 저희는 <span class="highlight">전국 딜러사</span>의 재고 현황과 프로모션을 실시간으로 비교하여 <span class="highlight">가장 싼곳</span>의 견적을 제공합니다.
+    </div>
+    <div class="review-card">
+        <h4><span class="highlight">2026년 3월 기준 랭글러 프로모션</span></h4>
+        <ul>
+            <li><strong>재고 할인:</strong> 랭글러 Rubicon, Sahara 모델의 <span class="highlight">즉시 출고 재고</span>에 한해 특별 할인 금액 제공 (최대 500만원 할인)</li>
+            <li><strong>4xe 모델 특별 혜택:</strong> 랭글러 4xe 리스 이용 고객 대상 <span class="highlight">금리 우대</span> 적용 및 <span class="highlight">충전 지원금</span> 제공</li>
+            <li><strong>만기 시 인수 비용 지원:</strong> 계약 만료 시 인수 희망 고객에게 <span class="highlight">잔존가치 부담금 일부 지원</span> (선착순 마감)</li>
+            <li><strong>사은품 제공:</strong> 틴팅, 블랙박스 등 기본 <span class="highlight">사은품</span> 외에도 캠핑용품 또는 고급 차량용품 <span class="highlight">지원</span></li>
+        </ul>
+    </div>
+    <div class="review-card">
+        <h4><span class="highlight">리스사별 비교 팁:</span> '신규 가입 혜택'과 '지원금'</h4>
+        <p>일반적으로 <span class="highlight">메이저 리스사</span>(KB캐피탈, 현대캐피탈, 하나캐피탈 등)는 안정적인 금리를 제공하며, <span class="highlight">비메이저 리스사</span>는 신규 고객 유치를 위해 <span class="highlight">더 저렴한 견적</span>을 제시하는 경우가 많습니다. 저희 에이전시는 모든 리스사의 상품을 비교하여 고객님께 <span class="highlight">최적의 조건</span>을 찾아드립니다.</p>
+    </div>
+</section>
+
+<!-- Section: User Reviews (SEO keywords: 후기, 내돈내산, 만족도) -->
+<section id="고객후기" aria-label="랭글러 리스 고객 후기 및 사례">
+    <h2>지프 랭글러 리스 고객 후기 및 사례 (내돈내산)</h2>
+    <div class="section-intro">
+        실제 <span class="highlight">지프 랭글러 리스</span>를 이용한 고객님들의 <span class="highlight">내돈내산 후기</span>를 통해 서비스의 만족도를 확인해보세요. <span class="highlight">랭글러 루비콘</span>을 선택한 고객님부터 <span class="highlight">랭글러 4xe</span>로 효율성을 추구한 고객님까지 다양한 사례가 있습니다.
+    </div>
+    <div class="review-card">
+        <h4>랭글러 루비콘 리스 후기 (개인 사업자)</h4>
+        <p>"오프로드 튜닝을 좋아해서 랭글러를 꼭 갖고 싶었습니다. 할부보다는 <span class="highlight">리스 장단점</span>을 비교해보니, 사업자라 세금 절감이 크더라고요. <span class="highlight">금액</span>적인 부담이 줄어들어 <span class="highlight">루비콘</span>을 선택했습니다. <span class="highlight">전문 업체</span> 상담 덕분에 <span class="highlight">가장 저렴한 곳</span>에서 계약했습니다."</p>
+    </div>
+    <div class="review-card">
+        <h4>랭글러 4xe 리스 후기 (법인 고객)</h4>
+        <p>"법인 차량으로 랭글러 4xe를 선택했습니다. <span class="highlight">하이브리드 혜택</span>으로 <span class="highlight">신차 가격</span> 부담이 줄었고, <span class="highlight">즉시 출고</span>가 가능한 재고가 있어서 빠르게 받을 수 있었습니다. <span class="highlight">리스 견적</span> 비교를 여러 군데 했지만, 여기가 가장 <span class="highlight">조건</span>이 좋았습니다."</p>
+    </div>
+    <div class="review-card">
+        <h4>랭글러 사하라 리스 후기 (개인 고객)</h4>
+        <p>"<span class="highlight">랭글러</span>를 타고 싶었지만 <span class="highlight">가격</span> 때문에 고민했습니다. <span class="highlight">장기 렌트</span>와 <span class="highlight">리스 차이점</span>을 상담받고 <span class="highlight">보증금 0% 리스</span>로 진행했습니다. <span class="highlight">월 비용</span> 부담이 줄어서 만족합니다. <span class="highlight">사하라</span> 모델의 승차감도 생각보다 좋네요."</p>
+    </div>
+</section>
+
+<!-- Section: Quote Request Form (High engagement element) -->
+<section id="무료견적신청" aria-label="무료 견적 신청">
+    <h2>지프 랭글러 리스 무료 견적 신청하기</h2>
+    <form action="/submit-estimate" method="POST" aria-describedby="견적폼설명">
+        <p id="견적폼설명">아래 폼을 작성해주시면 전국 딜러사 및 리스사 견적을 통합 비교하여 <span class="highlight">최저가 견적</span>을 안내해 드립니다. <span class="highlight">보증금 0%</span>, <span class="highlight">즉시 출고</span> 가능 여부도 함께 확인해 드립니다.</p>
+
+        <label for="model_type">희망 모델 (필수)</label>
+        <select id="model_type" name="model" required>
+            <option value="">모델을 선택하세요</option>
+            <option value="랭글러 루비콘">지프 랭글러 루비콘</option>
+            <option value="랭글러 사하라">지프 랭글러 사하라</option>
+            <option value="랭글러 4xe">지프 랭글러 4xe (하이브리드)</option>
+            <option value="기타">기타 (상담 시 안내)</option>
+        </select>
+
+        <label for="lease_term">희망 리스 기간 (필수)</label>
+        <select id="lease_term" name="term" required>
+            <option value="">기간을 선택하세요</option>
+            <option value="36개월">36개월 (3년)</option>
+            <option value="48개월">48개월 (4년)</option>
+            <option value="60개월">60개월 (5년)</option>
+        </select>
+
+        <label for="deposit_type">보증금/선수금 조건</label>
+        <select id="deposit_type" name="deposit">
+            <option value="보증금 0%">보증금 0% (무보증 리스)</option>
+            <option value="보증금 10%">보증금 10%</option>
+            <option value="보증금 20%">보증금 20%</option>
+            <option value="선수금 10%">선수금 10%</option>
+            <option value="선수금 20%">선수금 20%</option>
+        </select>
+
+        <label for="mileage_option">연간 주행거리 (선택)</label>
+        <select id="mileage_option" name="mileage">
+            <option value="무제한">무제한 (주행거리 제한 없음)</option>
+            <option value="1만km">연 1만 km</option>
+            <option value="2만km">연 2만 km</option>
+            <option value="3만km">연 3만 km</option>
+        </select>
+
+        <label for="customer_type">고객 유형</label>
+        <div>
+            <input type="radio" id="personal" name="customer_type" value="personal" checked> <label for="personal" style="display:inline;">개인 고객</label>
+            <input type="radio" id="business" name="customer_type" value="business"> <label for="business" style="display:inline;">개인 사업자/법인</label>
+        </div>
+
+        <label for="contact_name">성함 (필수)</label>
+        <input type="text" id="contact_name" name="name" placeholder="홍길동" required />
+
+        <label for="contact_phone">연락처 (필수)</label>
+        <input type="tel" id="contact_phone" name="phone" placeholder="010-1234-5678" pattern="[0-9]{3}-?[0-9]{4}-?[0-9]{4}" required />
+
+        <label for="consultation_time">상담 희망 시간</label>
+        <input type="text" id="consultation_time" name="consultation_time" placeholder="예: 평일 오전 10시~12시" />
+
+        <button type="submit" class="cta">견적 요청하고 최저가 확인하기</button>
+    </form>
+</section>
+
+<!-- Section: FAQ (Detailed information for engagement) -->
+<section id="자주묻는질문" aria-label="자주 묻는 질문 FAQ">
+    <h2>자주 묻는 질문 (FAQ)</h2>
+    <dl class="faq">
+        <dt>지프 랭글러 리스 비용은 어떻게 산출되나요? <span class="highlight">(자세히 알아보기)</span></dt>
+        <dd>
+            <p>월 리스료는 <span class="highlight">차량 가격 (2026년형 신차 가격) - 잔존가치</span>를 리스 기간으로 나눈 후, 여기에 <span class="highlight">금리 및 리스 수수료</span>가 더해져 산출됩니다. <span class="highlight">랭글러 모델</span>에 따라, 그리고 <span class="highlight">리스사별 금리</span>에 따라 <span class="highlight">월 비용</span>이 천차만별입니다. 특히, <span class="highlight">랭글러 4xe</span> 모델은 일반 모델보다 잔존가치가 높게 책정되어 <span class="highlight">월 납입금</span>이 예상외로 <span class="highlight">저렴</span>할 수 있습니다.</p>
+            <p><strong>예시:</strong> 차량가 8,000만원, 잔존가치 4,000만원, 48개월 리스 시 (4,000만원 / 48개월) + 이자율 = 월 리스료.</p>
+        </dd>
+
+        <dt>지프 랭글러 리스 심사 조건은 까다로운가요?</dt>
+        <dd>
+            <p>일반적으로 신차 할부보다는 조건이 완화되어 있습니다. 다만, <span class="highlight">신용 점수</span>와 <span class="highlight">소득 증빙 자료</span>가 중요합니다. 저희는 <span class="highlight">신규 사업자</span>나 <span class="highlight">사회 초년생</span>도 <span class="highlight">리스 가입</span>이 가능하도록 다양한 <span class="highlight">저금리 상품</span>을 비교해 드립니다.</p>
+            <p><span class="highlight">보증금 0% 리스</span>를 원하실 경우 신용 등급이 매우 중요하며, <span class="highlight">보증금</span>을 일정 금액 납부할 경우 심사 통과율이 높아집니다.</p>
+        </dd>
+
+        <dt>지프 랭글러 리스 만기 시 인수 vs. 반납 어떤 선택이 유리한가요?</dt>
+        <dd>
+            <p><strong>인수가 유리한 경우:</strong> 차량을 오랫동안 소유하고 싶거나, <span class="highlight">중고차 시세</span>가 잔존가치보다 높을 경우. 특히 <span class="highlight">랭글러</span>와 같이 감가율이 낮은 차량은 인수가 유리할 확률이 높습니다.</p>
+            <p><strong>반납이 유리한 경우:</strong> 차량 교체 주기가 짧거나, <span class="highlight">중고차 가격</span>이 잔존가치보다 낮을 경우. <span class="highlight">신형 랭글러</span>로 바로 교체하고자 할 때도 반납 후 재리스가 편리합니다.</p>
+        </dd>
+
+        <dt>랭글러 리스와 랭글러 장기렌트의 차이점은 무엇인가요?</dt>
+        <dd>
+            <p>가장 큰 <span class="highlight">차이점</span>은 <span class="highlight">보험 가입</span> 주체와 <span class="highlight">차량 번호판</span>입니다. 리스는 개인 보험을 가입하여 보험 경력이 유지되며, 번호판도 일반 자가용 번호판을 사용합니다. 장기렌트는 렌터카 보험을 사용하며, 번호판이 '허, 하, 호'로 고정됩니다. <span class="highlight">사업자</span>의 경우 렌트가 <span class="highlight">초기 비용 부담</span>이 적지만, 리스가 <span class="highlight">개인 명의</span>로 깔끔하게 떨어지는 장점이 있습니다.</p>
+        </dd>
+    </dl>
+</section>
+
+<!-- Section: Additional Information and External Links -->
+<section id="정보제공" aria-label="추가 정보 및 외부 링크">
+    <h2>지프 랭글러 관련 외부 정보 및 리스 가이드</h2>
+    <div class="section-intro">
+        지프 랭글러에 대한 심층적인 정보와 리스 관련 공신력 있는 자료를 확인해보세요. <span class="highlight">지프 랭글러 공식 웹사이트</span>, <span class="highlight">나무위키</span> 등의 정보를 참고하여 <span class="highlight">신차 구입</span> 결정에 도움을 받으실 수 있습니다.
+    </div>
+    <ul>
+        <li><a href="https://www.jeep.co.kr/" target="_blank">지프 코리아 공식 홈페이지</a>: 2026년형 랭글러 상세 스펙 및 모델 정보 [출처: 지프 코리아]</li>
+        <li><a href="https://namu.wiki/w/%EC%A7%80%ED%94%84%20%EB%9E%AD%EA%B8%80%EB%9F%AC" target="_blank">나무위키: 지프 랭글러</a>: 랭글러 모델 역사, 특징, 단점 등 상세 정보 [출처: 나무위키]</li>
+        <li><a href="https://www.fss.or.kr/" target="_blank">금융감독원 (FSS)</a>: 리스 계약 관련 소비자 유의사항 및 금융 정보 [출처: 금융감독원]</li>
+        <li><a href="https://www.carisyou.com/" target="_blank">카이즈유: 자동차 통계 및 시장 동향</a>: 랭글러 중고차 시세 및 리스 시장 동향 분석 [출처: 카이즈유]</li>
+        <li><a href="https://www.mohw.go.kr/" target="_blank">보건복지부 (PHEV 보조금 관련)</a>: 플러그인 하이브리드 차량 지원 정책 정보 [출처: 정부부처]</li>
+    </ul>
+</section>
+
+<!-- Footer Section: Contact and Business Details -->
+<section id="문의하기" aria-label="문의하기">
+    <h2>문의하기</h2>
+    <p><strong>전화 문의: 1666-xxxx</strong> | <a href="mailto:info@yourdomain.kr">info@yourdomain.kr</a></p>
+    <p><strong>상담 시간:</strong> 평일 09:00~19:00 (점심시간 12:00~13:00)</p>
+    <p><strong>회사 주소:</strong> 서울특별시 강남구 테헤란로 123 (전국 서비스 가능)</p>
+    <p><strong>SNS 채널:</strong> <a href="#">유튜브</a> | <a href="#">인스타그램</a> | <a href="#">네이버 블로그</a></p>
+</section>
+
+  
